@@ -7,7 +7,6 @@
   // only changes colours and numbers, chips don't move, and the DOM is updated
   // by key instead of being rebuilt.
   import type { NetNode } from '$shared/api';
-  import { forceCollide, forceSimulation, forceX, forceY, type SimulationNodeDatum } from 'd3-force';
   import { t } from '$lib/i18n/index.svelte';
   import { type Device, type Person, statusLabel } from '$lib/model';
 
@@ -16,6 +15,7 @@
     hub,
     me = null,
     interactive = false,
+    fill = false,
     selected = null,
     highlight = null,
     visible = null,
@@ -25,6 +25,8 @@
     hub: NetNode | null;
     me?: string | null;
     interactive?: boolean;
+    /** fill the parent's height too (the map page) instead of sizing by width */
+    fill?: boolean;
     selected?: string | null;
     highlight?: string | null;
     visible?: ((d: Device) => boolean) | null;
@@ -39,40 +41,78 @@
   const HUB_W = 172;
   const HUB_H = 52;
 
-  interface Unit extends SimulationNodeDatum {
+  interface Unit {
     key: string;
     multi: boolean;
     w: number;
     h: number;
-    tx: number;
-    ty: number;
+    x: number;
+    y: number;
+    fixed?: boolean;
   }
 
   // stable layout key: changes only when people or devices change
   const layoutKey = $derived(people.map((p) => `${p.key}:${p.devices.map((d) => d.id).join(',')}`).join('|'));
 
+  // Horizontal stretch of the rings: the map is drawn in a wide panel.
+  const ASPECT = 1.7;
+  const MARGIN = 16;
+
+  /**
+   * Concentric rings around the hub. People with several devices (the islands)
+   * come first, biggest first, then single devices, online before offline: what
+   * matters most stays closest to the centre. A ring takes units until its
+   * perimeter is full, so the map grows outwards as compactly as the units allow
+   * instead of spreading a few of them over one huge ellipse.
+   */
   function computeLayout(ps: Person[]) {
-    const n = Math.max(1, ps.length);
-    const units: Unit[] = ps.map((p, i) => {
+    const units: Unit[] = ps.map((p) => {
       const multi = p.devices.length > 1;
-      const w = CW + (multi ? PAD * 2 : 0);
-      const h = (multi ? HEAD + PAD * 2 - 4 : 0) + p.devices.length * (CH + GAP) - GAP;
-      const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
-      // the ellipse grows with the number of units
-      const rx = Math.max(300, 34 * n);
-      const ry = Math.max(200, 22 * n);
-      const tx = Math.cos(a) * rx;
-      const ty = Math.sin(a) * ry;
-      return { key: p.key, multi, w, h, tx, ty, x: tx, y: ty };
+      return {
+        key: p.key,
+        multi,
+        w: CW + (multi ? PAD * 2 : 0),
+        h: (multi ? HEAD + PAD * 2 - 4 : 0) + p.devices.length * (CH + GAP) - GAP,
+        x: 0,
+        y: 0,
+      };
     });
-    // the control hub is a fixed obstacle
-    const hubU: Unit = { key: '__hub', multi: false, w: HUB_W, h: HUB_H, tx: 0, ty: 0, x: 0, y: 0, fx: 0, fy: 0 };
-    const sim = forceSimulation<Unit>([hubU, ...units])
-      .force('x', forceX<Unit>((u) => u.tx).strength(0.25))
-      .force('y', forceY<Unit>((u) => u.ty).strength(0.25))
-      .force('c', forceCollide<Unit>((u) => Math.hypot(u.w, u.h) / 2 + 14).iterations(3))
-      .stop();
-    for (let i = 0; i < 300; i++) sim.tick();
+    const rank = (p: Person) => (p.devices.length > 1 ? 0 : p.online ? 1 : 2);
+    const order = units
+      .map((u, i) => ({ u, p: ps[i] as Person }))
+      .sort((a, b) => rank(a.p) - rank(b.p) || b.p.devices.length - a.p.devices.length)
+      .map((x) => x.u);
+
+    let r = Math.max(HUB_W, HUB_H) / 2 + 90;
+    let i = 0;
+    let ringNo = 0;
+    while (i < order.length) {
+      // approximate ellipse perimeter: plenty for spacing
+      const rx = r * ASPECT;
+      const per = 2 * Math.PI * Math.sqrt((rx * rx + r * r) / 2);
+      const ring: Unit[] = [];
+      let used = 0;
+      let tallest = 0;
+      while (i < order.length) {
+        const u = order[i] as Unit;
+        const size = (u.w + u.h) / 2 + 28;
+        if (ring.length && used + size > per) break;
+        ring.push(u);
+        used += size;
+        tallest = Math.max(tallest, u.h, u.w / ASPECT);
+        i++;
+      }
+      // spread evenly; offset alternate rings so they don't line up radially
+      const off = -Math.PI / 2 + (ringNo % 2 && ring.length > 1 ? Math.PI / ring.length : 0);
+      ring.forEach((u, k) => {
+        const a = off + (k * 2 * Math.PI) / ring.length;
+        u.x = Math.cos(a) * r * ASPECT;
+        u.y = Math.sin(a) * r;
+      });
+      r += tallest + 40;
+      ringNo++;
+    }
+    relax([{ key: '__hub', multi: false, w: HUB_W, h: HUB_H, x: 0, y: 0, fixed: true }, ...units]);
 
     const boxes = new Map<string, { x: number; y: number; w: number; h: number; multi: boolean }>();
     let minX = -HUB_W / 2;
@@ -80,8 +120,8 @@
     let minY = -HUB_H / 2;
     let maxY = HUB_H / 2;
     for (const u of units) {
-      const x = (u.x ?? 0) - u.w / 2;
-      const y = (u.y ?? 0) - u.h / 2;
+      const x = u.x - u.w / 2;
+      const y = u.y - u.h / 2;
       boxes.set(u.key, { x, y, w: u.w, h: u.h, multi: u.multi });
       minX = Math.min(minX, x);
       maxX = Math.max(maxX, x + u.w);
@@ -90,6 +130,39 @@
     }
     const m = 24;
     return { boxes, vb: { x: minX - m, y: minY - m, w: maxX - minX + 2 * m, h: maxY - minY + 2 * m } };
+  }
+
+  /** pushes overlapping rectangles apart along the axis of least overlap */
+  function relax(us: Unit[], iterations = 120) {
+    for (let it = 0; it < iterations; it++) {
+      let moved = false;
+      for (let a = 0; a < us.length; a++) {
+        for (let b = a + 1; b < us.length; b++) {
+          const p = us[a] as Unit;
+          const q = us[b] as Unit;
+          const dx = q.x - p.x;
+          const dy = q.y - p.y;
+          const ox = (p.w + q.w) / 2 + MARGIN - Math.abs(dx);
+          const oy = (p.h + q.h) / 2 + MARGIN - Math.abs(dy);
+          if (ox <= 0 || oy <= 0) continue;
+          moved = true;
+          const [mx, my] = ox < oy ? [Math.sign(dx || 1) * ox, 0] : [0, Math.sign(dy || 1) * oy];
+          if (p.fixed) {
+            q.x += mx;
+            q.y += my;
+          } else if (q.fixed) {
+            p.x -= mx;
+            p.y -= my;
+          } else {
+            p.x -= mx / 2;
+            p.y -= my / 2;
+            q.x += mx / 2;
+            q.y += my / 2;
+          }
+        }
+      }
+      if (!moved) break;
+    }
   }
 
   const layout = $derived.by(() => {
@@ -152,6 +225,7 @@
 <svg
   bind:this={svgEl}
   class="graph"
+  class:fill
   class:drag={dragging}
   class:pannable={interactive}
   viewBox="{layout.vb.x} {layout.vb.y} {layout.vb.w} {layout.vb.h}"
@@ -222,6 +296,11 @@
     display: block;
     width: 100%;
     height: auto;
+  }
+  .fill {
+    position: absolute;
+    inset: 0;
+    height: 100%;
   }
   .pannable {
     cursor: grab;

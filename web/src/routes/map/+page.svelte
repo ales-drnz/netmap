@@ -65,6 +65,7 @@
         hub={live.hub}
         me={live.myOwner}
         interactive
+        fill
         {selected}
         {highlight}
         {visible}
