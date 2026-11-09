@@ -1,0 +1,7 @@
+node_modules
+dist
+.git
+web/node_modules
+web/.svelte-kit
+web/build
+*.log
