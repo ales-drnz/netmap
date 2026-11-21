@@ -1,0 +1,4 @@
+tags:
+  golden:
+    # goldens depend on the platform's font rasterizer: CI runs them on Linux
+    timeout: 2x

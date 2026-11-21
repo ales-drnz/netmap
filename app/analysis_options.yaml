@@ -1,0 +1,10 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - web/**
+
+formatter:
+  # the code is written for wide editors; one line per idea reads better
+  page_width: 140

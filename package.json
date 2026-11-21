@@ -1,0 +1,42 @@
+{
+  "name": "netmap",
+  "version": "0.1.0",
+  "description": "A live map and dashboard for your ZeroTier network, for ZTNET.",
+  "license": "BSD-3-Clause",
+  "author": "Alessandro Di Ronza",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ales-drnz/netmap.git"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx mock/dev.ts",
+    "dev:web": "cd app && flutter run -d web-server",
+    "build:web": "node scripts/build-web.mjs",
+    "build:server": "node scripts/build-server.mjs",
+    "build": "npm run build:web && npm run build:server",
+    "check:server": "tsc -p server",
+    "check": "npm run check:server && cd app && flutter analyze",
+    "lint": "biome check server scripts mock shared biome.json vitest.config.ts",
+    "test": "vitest run",
+    "test:app": "cd app && flutter test",
+    "start": "node dist/server.mjs"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@types/node": "^22.20.5",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.4",
+    "hono": "^4.13.13",
+    "zod": "^4.6.6"
+  }
+}

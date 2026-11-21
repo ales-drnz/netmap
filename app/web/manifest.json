@@ -1,0 +1,12 @@
+{
+  "name": "Netmap",
+  "short_name": "Netmap",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f7fafb",
+  "theme_color": "#00687a",
+  "description": "A live map and dashboard for your ZeroTier network.",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

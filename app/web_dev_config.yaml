@@ -1,0 +1,8 @@
+# `npm run dev:web`: the Flutter dev server on :8083 with hot reload, the API
+# proxied to the mock server started by `npm run dev` on :8082.
+server:
+  host: localhost
+  port: 8083
+  proxy:
+    - target: http://localhost:8082/
+      prefix: /api/

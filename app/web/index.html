@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A live map and dashboard for your ZeroTier network.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f7fafb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101415" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <title>Netmap</title>
+  <!-- Shown until Flutter draws its first frame. Everything is inline: the
+       network is private and the page fetches nothing from the internet. -->
+  <style>
+    html, body { margin: 0; height: 100%; background: #f7fafb; }
+    @media (prefers-color-scheme: dark) { html, body { background: #101415; } }
+    #splash { position: fixed; inset: 0; display: grid; place-items: center; }
+    #splash svg { width: 72px; height: 72px; color: #00687a; animation: pulse 1.6s ease-in-out infinite alternate; }
+    @media (prefers-color-scheme: dark) { #splash svg { color: #86d2e6; } }
+    @media (prefers-reduced-motion: reduce) { #splash svg { animation: none; } }
+    @keyframes pulse { from { transform: scale(.82); opacity: .6; } to { transform: scale(1); opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div id="splash" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="currentColor"/></svg>
+  </div>
+  <noscript>Netmap needs JavaScript.</noscript>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

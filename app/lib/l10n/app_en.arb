@@ -1,0 +1,564 @@
+{
+  "@@locale": "en",
+  "appTitle": "Netmap",
+  "navMap": "Map",
+  "navDevices": "Devices",
+  "navActivity": "Activity",
+  "navNetwork": "Network",
+  "navMain": "Main navigation",
+  "more": "More",
+  "theme": "Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "language": "Language",
+  "languageSystem": "Browser language",
+  "version": "Version {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "close": "Close",
+  "hello": "Hi {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stateDirect": "Direct",
+  "stateRelay": "Through a relay",
+  "stateOneWay": "No reply",
+  "stateOffline": "Offline",
+  "stateInactive": "Inactive",
+  "you": "You",
+  "hub": "Hub",
+  "meDirectTitle": "Direct",
+  "meRelayTitle": "Through a relay",
+  "meOneWayTitle": "No reply",
+  "meOfflineTitle": "Offline",
+  "meUnknownTitle": "Unknown device",
+  "loading": "Loading…",
+  "copyMyAddress": "Copy my address",
+  "addressCopied": "Address copied: {ip}",
+  "@addressCopied": {
+    "placeholders": {
+      "ip": {
+        "type": "String"
+      }
+    }
+  },
+  "agoNow": "just now",
+  "agoSeconds": "{n} s ago",
+  "@agoSeconds": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "agoMinutes": "{n} min ago",
+  "@agoMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "agoHours": "{n} h ago",
+  "@agoHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "agoYesterday": "yesterday",
+  "agoDays": "{n} days ago",
+  "@agoDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "verdictLoading": "Connecting…",
+  "verdictOk": "Everything works",
+  "verdictRelay": "{count, plural, =1{Works · 1 device through a relay} other{Works · {count} devices through a relay}}",
+  "@verdictRelay": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "verdictTcpFallback": "UDP is blocked: the network falls back to TCP",
+  "verdictForceTcp": "TCP relay is forced",
+  "verdictNetDrop": "{count, plural, =1{1 device dropped} other{{count} devices dropped together}}",
+  "@verdictNetDrop": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "verdictNetDropMany": "Several devices dropped together",
+  "verdictServerDown": "Netmap isn't answering",
+  "verdictZtnetDown": "ZTNET isn't answering: data from {ago}",
+  "@verdictZtnetDown": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "mapLabel": "Map of the network",
+  "mapHint": "Arrows move between devices, Enter opens one, plus and minus zoom, 0 shows everything.",
+  "zoomIn": "Zoom in",
+  "zoomOut": "Zoom out",
+  "zoomFit": "Show everything",
+  "legend": "Legend",
+  "closeDetails": "Close",
+  "latencyMs": "{ms} ms",
+  "@latencyMs": {
+    "placeholders": {
+      "ms": {
+        "type": "int"
+      }
+    }
+  },
+  "ownerOf": "{name}'s",
+  "@ownerOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "lastSeen": "seen {ago}",
+  "@lastSeen": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "neverSeen": "never seen",
+  "typePc": "Computer",
+  "typeLaptop": "Laptop",
+  "typePhone": "Phone",
+  "typeTablet": "Tablet",
+  "typeTv": "TV",
+  "typeServer": "Server",
+  "typeConsole": "Console",
+  "typeIot": "Other device",
+  "durMinutes": "{count, plural, =1{1 minute} other{{count} minutes}}",
+  "@durMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durHours": "{count, plural, =1{1 hour} other{{count} hours}}",
+  "@durHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@durDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durMonths": "{count, plural, =1{1 month} other{{count} months}}",
+  "@durMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durYears": "{count, plural, =1{1 year} other{{count} years}}",
+  "@durYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "services": "Services",
+  "svcDown": "Not answering",
+  "svcDownFor": "Not answering for {d}",
+  "@svcDownFor": {
+    "placeholders": {
+      "d": {
+        "type": "String"
+      }
+    }
+  },
+  "svcApp": "App: {app}",
+  "@svcApp": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      }
+    }
+  },
+  "open": "Open",
+  "details": "Details",
+  "someDevice": "a device",
+  "evOffline": "{name} went offline",
+  "@evOffline": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "evOnline": "{name} is back online",
+  "@evOnline": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "evRelay": "{name} now goes through a relay",
+  "@evRelay": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "evDirect": "{name} is direct again",
+  "@evDirect": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "evSpike": "High latency on {name}",
+  "@evSpike": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "evPending": "{name} is asking to join",
+  "@evPending": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "evNetdrop": "{count, plural, =1{1 device dropped} other{{count} devices dropped together}}",
+  "@evNetdrop": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "evNetdropMany": "Several devices dropped together",
+  "actAll": "All",
+  "actOff": "Offline",
+  "actOn": "Back online",
+  "actPath": "Link changes",
+  "actSpike": "High latency",
+  "actJoin": "Requests",
+  "actFilter": "Filter the activity",
+  "actWaiting": "Waiting",
+  "actWaitingFor": "for {d}",
+  "@actWaitingFor": {
+    "placeholders": {
+      "d": {
+        "type": "String"
+      }
+    }
+  },
+  "actEmptyFilter": "Nothing of this kind",
+  "devNone": "No device matches",
+  "devSearch": "Search by name, person or address",
+  "back": "Back",
+  "dtOwner": "{name}'s {type}",
+  "@dtOwner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "dtSpeed": "Speed",
+  "dtLastSeen": "Last seen",
+  "dtAvailability": "Availability, 24 hours",
+  "dtNow": "now",
+  "dtSpeedMs": "{ms} ms typical",
+  "@dtSpeedMs": {
+    "placeholders": {
+      "ms": {
+        "type": "int"
+      }
+    }
+  },
+  "dtAvailPct": "online {pct} of the last 24 hours",
+  "@dtAvailPct": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "dtTechnical": "Technical details",
+  "dtAddress": "ZeroTier address",
+  "dtNodeId": "Node ID",
+  "dtVersion": "ZeroTier version",
+  "dtNewest": "newest on the network: {v}",
+  "@dtNewest": {
+    "placeholders": {
+      "v": {
+        "type": "String"
+      }
+    }
+  },
+  "dtPaths": "Paths",
+  "dtPathsValue": "{active} active · {dead} broken · IPv{family}",
+  "@dtPathsValue": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "dead": {
+        "type": "int"
+      },
+      "family": {
+        "type": "int"
+      }
+    }
+  },
+  "dtLastPacket": "Last packet",
+  "dtSecondsAgo": "{n} s ago",
+  "@dtSecondsAgo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "dtMemberFor": "In the network for",
+  "dtNote": "Note",
+  "dtLatency": "Latency over time",
+  "dtWeekPrev": "week before {ms} ms",
+  "@dtWeekPrev": {
+    "placeholders": {
+      "ms": {
+        "type": "int"
+      }
+    }
+  },
+  "dtPackets": "Packets, 30 days",
+  "dtPacketsTotal": "{n} packets",
+  "@dtPacketsTotal": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "dtErrors": "{count, plural, =0{no packet errors in 24 hours} =1{1 packet error in 24 hours} other{{count} packet errors in 24 hours}}",
+  "@dtErrors": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dtRecent": "Recent events",
+  "copy": "Copy",
+  "copied": "Copied",
+  "netPrivate": "Private",
+  "netPublic": "Public",
+  "netCreated": "created {date}",
+  "@netCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "netHubTitle": "ZeroTier on {hub}",
+  "@netHubTitle": {
+    "placeholders": {
+      "hub": {
+        "type": "String"
+      }
+    }
+  },
+  "netService": "Service",
+  "netOnline": "Online",
+  "netNotOnline": "Not answering",
+  "netVersionPort": "{v} · port {port}",
+  "@netVersionPort": {
+    "placeholders": {
+      "v": {
+        "type": "String"
+      },
+      "port": {
+        "type": "String"
+      }
+    }
+  },
+  "netTcpFallback": "TCP fallback",
+  "netForced": "Forced TCP relay",
+  "netPortMapping": "Port mapping",
+  "netMetrics": "Metrics",
+  "netActive": "active",
+  "netInactive": "not active",
+  "netOn": "on",
+  "netOff": "off",
+  "netUnknown": "unknown",
+  "netNoLocal": "The local ZeroTier service can't be queried",
+  "netChain": "Configured, received, applied",
+  "netConfigured": "Configured",
+  "netApplied": "Applied on {hub}",
+  "@netApplied": {
+    "placeholders": {
+      "hub": {
+        "type": "String"
+      }
+    }
+  },
+  "netDns": "DNS",
+  "netRoutes": "Routes",
+  "netAddresses": "Addresses",
+  "netNone": "none",
+  "netNotReceived": "not received",
+  "netNotApplied": "not applied",
+  "netConsentOff": "not allowed on the hub",
+  "netYes": "yes",
+  "netPerf": "Performance over time",
+  "netOnlineNow": "Online now",
+  "netTypical": "Typical latency",
+  "netAvailability": "Availability, 24 h",
+  "netOutages": "Drops, 24 h",
+  "netVsWeek": "{pct} vs last week",
+  "@netVsWeek": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "netLatencyBy": "Latency by device",
+  "netAvailGrid": "Availability, 24 hours",
+  "netRelays": "Through a relay",
+  "netTraffic": "Network traffic, 30 days",
+  "netTcpShare": "TCP share {pct}",
+  "@netTcpShare": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "netMetricsOff": "ZeroTier metrics are off",
+  "netTop": "Traffic by person",
+  "netVersions": "ZeroTier versions",
+  "netComposition": "Devices by type",
+  "netDevicesCount": "{count, plural, =1{1 device} other{{count} devices}}",
+  "@netDevicesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stateOnline": "Online",
+  "meOnlineTitle": "Online",
+  "netLocalTokenUnreadable": "Netmap can't read ZeroTier's token: the file is readable only by root. Use the current image (it reads the token as root, then drops privileges) or set ZT_AUTHTOKEN.",
+  "netLocalTokenMissing": "ZeroTier's token isn't there: mount the zerotier volume or set ZT_AUTHTOKEN.",
+  "netLocalRefused": "The local ZeroTier service doesn't answer: Netmap must share the ZeroTier container's network (network_mode: service:zerotier).",
+  "netLocalTimeout": "The local ZeroTier service is too slow to answer.",
+  "netLocalUnauthorized": "The local ZeroTier service refuses the token: check ZT_AUTHTOKEN.",
+  "inactiveShort": "{count, plural, other{+{count} inactive}}",
+  "@inactiveShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "revoked": "revoked",
+  "availAgo24": "24 h ago",
+  "availNow": "now",
+  "chartMedian": "{v} median",
+  "@chartMedian": {
+    "placeholders": {
+      "v": {
+        "type": "int"
+      }
+    }
+  },
+  "chartPrevWeek": "{v} week before",
+  "@chartPrevWeek": {
+    "placeholders": {
+      "v": {
+        "type": "int"
+      }
+    }
+  },
+  "dtMedianP95": "median {median} ms · p95 {p95} ms",
+  "@dtMedianP95": {
+    "placeholders": {
+      "median": {
+        "type": "int"
+      },
+      "p95": {
+        "type": "int"
+      }
+    }
+  },
+  "netReceivedValue": "received: {value}",
+  "@netReceivedValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "netId": "Network ID",
+  "devicesOfType": "{type, select, pc{{count, plural, =1{1 computer} other{{count} computers}}} laptop{{count, plural, =1{1 laptop} other{{count} laptops}}} phone{{count, plural, =1{1 phone} other{{count} phones}}} tablet{{count, plural, =1{1 tablet} other{{count} tablets}}} tv{{count, plural, =1{1 TV} other{{count} TVs}}} server{{count, plural, =1{1 server} other{{count} servers}}} console{{count, plural, =1{1 console} other{{count} consoles}}} other{{count, plural, =1{1 other device} other{{count} other devices}}}}",
+  "@devicesOfType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noEvents": "Nothing has changed yet.",
+  "dtVia": "Goes through",
+  "dtViaLocal": "the hub's local network",
+  "dtViaInternet": "the internet",
+  "dtViaRelay": "a relay"
+}

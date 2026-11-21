@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Jellyfin",
+    "url": "http://10.147.17.10:8096",
+    "description": "Movies and shows",
+    "app": "Jellyfin for iOS, Android and TV",
+    "host": "nas",
+    "color": "#aa5cc3"
+  },
+  {
+    "name": "Nextcloud",
+    "url": "http://10.147.17.10:8080",
+    "description": "Shared files and photos",
+    "app": "Nextcloud",
+    "host": "nas",
+    "color": "#0082c9"
+  },
+  {
+    "name": "Home Assistant",
+    "url": "http://10.147.17.20:8123",
+    "description": "Home automation",
+    "host": "home-pi"
+  }
+]
