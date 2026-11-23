@@ -1,4 +1,4 @@
-// Floating toolbar used as the main navigation (direction C, "Costellazione").
+// Floating toolbar used as the main navigation.
 //
 // Material 3 Expressive specifies floating toolbars, but Flutter's material_ui
 // has no widget for them yet (checked on material_ui 1.11.1): this is a small

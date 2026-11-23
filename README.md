@@ -341,7 +341,7 @@ Every member does see the names and ZeroTier addresses of the other authorized m
 server/src   TypeScript server: sources/ (ZTNET, ZeroTier), history/, snapshot.ts, http.ts
 app/         Flutter web app (Material 3 Expressive), English and Italian
   lib/data     the API contract in Dart (mirrors shared/api.ts), live updates, the logic
-  lib/map      the constellation map: layout and drawing
+  lib/map      the map: the hub, a lane per state, layout and drawing
   lib/pages    home, devices, activity, network
   lib/l10n     translations and the glossary (GLOSSARY.md)
 shared/      the API contract (TypeScript), the server's source of truth

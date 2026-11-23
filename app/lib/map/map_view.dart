@@ -1,4 +1,4 @@
-// The constellation map: pan, zoom, select. It fits the whole network into
+// The map, the hub and a lane per state: pan, zoom, select. It fits the whole network into
 // the part of the screen that panels leave free, and keeps the viewer's own
 // pan and zoom once they move it.
 //

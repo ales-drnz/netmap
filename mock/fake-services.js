@@ -35,14 +35,14 @@ export function createFakeNetwork(opts = {}) {
   const members = [
     // the controller "doesn't see itself": conStatus 0 on purpose, the server forces it online
     mk('nas', 0),
-    // alice's island (3 devices, person-type names) — phone via relay
+    // alice's devices (3, person-type names) — phone via relay
     mk('alice-pc', 2),
     mk('alice-phone', 1),
     mk('alice-laptop', 0, 2),
-    // bob's island (2 devices)
+    // bob's devices (2)
     mk('bob-phone', 2),
     mk('bob-tablet', 0, 5),
-    // carol's island: also tests merging "carol2"
+    // carol's devices: also tests merging "carol2"
     mk('carol-pc', 2),
     mk('carol2-pc', 0, 1),
     // singles, with TYPE-person style names as in a real network
